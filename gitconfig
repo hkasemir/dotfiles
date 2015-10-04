@@ -35,3 +35,5 @@
     lll = log --graph --decorate --abbrev-commit
     llll = log --graph --decorate --abbrev-commit --all
     ls = ls-files
+[push]
+	default = simple
