@@ -2,7 +2,7 @@
 source ~/.local/extra/utils.bash
 
 # exports =============================================================
-export EDITOR=brackets
+export EDITOR=vim
 
 if [ -d $HOME/.local/bin ]; then
     export PATH=$HOME/.local/bin:$PATH
@@ -33,3 +33,5 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
