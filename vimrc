@@ -23,7 +23,6 @@ filetype plugin on    " required
 " Searching
 set hlsearch
 set incsearch
-nnoremap <leader><space> :nohlsearch<CR>
 
 """""""""""""""""""""
 " Folding
@@ -35,14 +34,16 @@ set whichwrap=<,>,[,],h,l
 nnoremap j gj
 nnoremap k gk
 nnoremap E $
-
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+map <C-H> <C-W>h<C-W>_
+map <C-L> <C-W>l<C-W>_
 
 """""""""""""""""""""
 " Leader Shortcut
 let mapleader=","
+nnoremap <leader><space> :nohlsearch<CR>
 inoremap jk <esc>
-
-
 
 
 """"""""""""""""""""
@@ -62,4 +63,4 @@ call plug#end()
 """"""""""""""""""""""""""""""""
 " autogroups
 autocmd vimenter * NERDTree
-
+let g:user_emmet_leader_key=','
