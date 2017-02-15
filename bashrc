@@ -1,6 +1,3 @@
-# helper functions
-source ~/.local/extra/utils.bash
-
 # exports =============================================================
 export EDITOR=vim
 
@@ -24,14 +21,12 @@ alias mkve2="mkvirtualenv --no-site-packages --python=/usr/bin/python2.7"
 source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 
-# nvm
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
 # git completion =====================================================
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# colors ============================================================
+export CLICOLOR=1
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
