@@ -3,6 +3,7 @@ set nocompatible
 " Colors
 syntax enable
 colorscheme jellybeans
+set colorcolumn=80
 
 """""""""""""""""""""
 " Spaces
