@@ -3,7 +3,7 @@
     email = heidi.kasemir@gmail.com
 
 [core]
-    excludesfile = ~/.local/gitignore_global
+	excludesfile = /Users/heidi/.gitignore_global
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [color]
@@ -39,3 +39,5 @@
     ls = ls-files
 [push]
 	default = simple
+[url "git@github.com:"]
+	insteadOf = https://github.com/
