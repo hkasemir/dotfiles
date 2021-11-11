@@ -1,0 +1,11 @@
+
+# Commit Message Driven Development
+
+# write a commit message
+function aim() { vim ./COMMIT_MSG }
+
+# edit commit message as necessary and commit staged files with message then delete aim
+function fire() { vim ./COMMIT_MSG && ( git commit -F ./COMMIT_MSG $* ) && rm ./COMMIT_MSG }
+
+# delete local branches that have been merged on remote
+function cleanLocalBranches() { git br | egrep -v "(^\*|master|production)" | xargs git br -D }
