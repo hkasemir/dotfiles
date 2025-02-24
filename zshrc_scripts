@@ -9,3 +9,52 @@ function fire() { vim ./COMMIT_MSG && ( git commit -F ./COMMIT_MSG $* ) && rm ./
 
 # delete local branches that have been merged on remote
 function cleanLocalBranches() { git br | egrep -v "(^\*|master|production)" | xargs git br -D }
+
+# key-value pairs for commonly used repos
+declare -A shortcuts
+shortcuts[w]=~/projects/udacity/emc-web
+shortcuts[c]=~/projects/udacity/emc-content
+shortcuts[e]=~/go/src/github.com/udacity/enterprise
+shortcuts[er]=~/go/src/github.com/udacity/ent-reports
+shortcuts[pa]=~/go/src/github.com/udacity/progress-api
+shortcuts[mp]=~/projects/udacity/mind_probe
+shortcuts[cfg]=~/.zshrc
+
+alias typegen='JWT={your_jwt} npm run gql-type-gen'
+alias downup='make integration-down && make integration-up'
+alias restart-test='(cdto c; downup)'
+alias start-int='(cdto c; git checkout master && git pull && restart-test)'
+alias start-test='start-int && npm t'
+alias update-emc='(cdto c && echo "updating emc-content" && git pull; cdto mp && echo "updating mind_probe" && git pull; cdto pa && echo "updating progress-api" && git pull; cdto er && echo "updating ent-reports" && git pull; cdto e && echo "updating enterprise monorepo" && git pull)'
+alias recfg='source ~/.zshrc'
+
+# cd [shortcut path]
+function cdto() {
+    if [[ $shortcuts[$@] ]]; then 
+        cd $shortcuts[$@]
+    else
+        cd "$@"
+    fi
+}
+
+# autmatically use proper node version when entering a dir with .nvmrc
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
